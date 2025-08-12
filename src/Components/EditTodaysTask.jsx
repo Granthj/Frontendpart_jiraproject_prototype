@@ -21,7 +21,7 @@ const EditTodaysTask = ({ show, handleClose, userEmail, task, taskid }) => {
     const fetchTasks = async () => {
         try {
         //   console.log("Fetching tasks for user:", user.email);
-        const response = await fetch(`http://localhost:9000/tasks/:${userEmail}`, {
+        const response = await fetch(`${process.env.backendUrl}/tasks/:${userEmail}`, {
           method: "GET",
           credentials: "include", 
         });
@@ -35,7 +35,7 @@ const EditTodaysTask = ({ show, handleClose, userEmail, task, taskid }) => {
           if(data.tasks[i]._id === taskid) {
             setTasks(data.tasks[i].progress);
             
-            console.log("DATA tasks:", data.tasks[i].progress);
+            // console.log("DATA tasks:", data.tasks[i].progress);
             break;
           }
         }
@@ -51,7 +51,7 @@ const EditTodaysTask = ({ show, handleClose, userEmail, task, taskid }) => {
 
   const handleSave = async () => {
     try {
-      const res = await fetch(`http://localhost:9000/edit/${taskid}`, {
+      const res = await fetch(`${process.env.backendUrl}/edit/${taskid}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -113,7 +113,7 @@ const EditTodaysTask = ({ show, handleClose, userEmail, task, taskid }) => {
                   <input type="text" className="form-control" placeholder="Enter notes" onChange={(e) => setTaskUpdate(prev => ({ ...prev, notes: e.target.value }))} />
                 </td>
                 <td>
-                  <select className="form-select" value={taskUpdate.status} // bind value to state
+                  <select className="form-select" value={taskUpdate.status}
                     onChange={(e) =>
                       setTaskUpdate((prev) => ({
                         ...prev,

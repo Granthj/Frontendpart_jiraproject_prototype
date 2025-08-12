@@ -18,7 +18,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:9000/signup", {
+      const response = await fetch(`${process.env.backendUrl}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -14,7 +14,7 @@ const AdminAddEmployee = () => {
     })
 
     useEffect(() => {
-        fetch("http://localhost:9000/existing-emails")
+        fetch(`${process.env.backendUrl}/existing-emails`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data, "abcd")
@@ -23,7 +23,7 @@ const AdminAddEmployee = () => {
             .catch((err) => console.error("Error fetching employees:", err));
     }, [emailAdded]);
     useEffect(() => {
-        fetch("http://localhost:9000/available-user")
+        fetch(`${process.env.backendUrl}/available-user`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data.usersNotInEmployees, "efgh")
@@ -33,7 +33,7 @@ const AdminAddEmployee = () => {
     }, []);
     useEffect(() => {
         const addEmployee=()=>{
-            fetch("http://localhost:9000/admin/create-employee", {
+            fetch(`${process.env.backendUrl}/admin/create-employee`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -56,7 +56,7 @@ const AdminAddEmployee = () => {
         e.preventDefault();
         console.log(formData);
         // console.log(...formData, "selected employee");
-        fetch("http://localhost:9000/admin-giveTask", {
+        fetch(`${process.env.backendUrl}/admin-giveTask`, {
             method: "POST", 
             headers: {
                 "Content-Type": "application/json"
