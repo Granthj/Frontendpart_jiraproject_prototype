@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 const EditTodaysTask = ({ show, handleClose, userEmail, task, taskid }) => {
   const [tasks, setTasks] = useState([]);
@@ -21,7 +21,7 @@ const EditTodaysTask = ({ show, handleClose, userEmail, task, taskid }) => {
     const fetchTasks = async () => {
         try {
         //   console.log("Fetching tasks for user:", user.email);
-        const response = await fetch(`${process.env.backendUrl}/tasks/:${userEmail}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tasks/:${userEmail}`, {
           method: "GET",
           credentials: "include", 
         });
@@ -51,7 +51,7 @@ const EditTodaysTask = ({ show, handleClose, userEmail, task, taskid }) => {
 
   const handleSave = async () => {
     try {
-      const res = await fetch(`${process.env.backendUrl}/edit/${taskid}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/edit/${taskid}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -129,15 +129,15 @@ const EditTodaysTask = ({ show, handleClose, userEmail, task, taskid }) => {
                 <td>
                 </td>
               </tr>
-                  <Button variant="primary" onClick={handleSave}>Save</Button>
-                  <Button variant="secondary" onClick={() => setAddTask(false)}>Cancel</Button>
             </tbody>}
-            <button className="btn btn-primary btn-sm" onClick={() => setAddTask(!addTask)}>Add Todays Update</button>
           </table>
         )}
+        <button className="btn btn-primary btn-sm" onClick={handleSave}>Save</button>
+        {addTask &&<button className="btn btn-danger btn-sm" onClick={() => setAddTask(false)}>Cancel</button>}
+  <button className="btn btn-primary btn-sm" onClick={() => setAddTask(!addTask)}>Add Todays Update</button>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>Close</Button>
+        <button className="btn btn-danger btn-sm" onClick={handleClose}>Close</button>
       </Modal.Footer>
     </Modal>
   );

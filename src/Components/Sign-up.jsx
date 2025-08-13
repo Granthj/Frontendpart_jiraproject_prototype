@@ -18,7 +18,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${process.env.backendUrl}/signup`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

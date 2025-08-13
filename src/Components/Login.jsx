@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Authentication/AuthContext";
-
 const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useAuth(); 
@@ -24,9 +23,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-
+    console.log(import.meta.env.VITE_BACKEND_URL," VITE_BACKEND_URL");
     try {
-      const response = await fetch(`${process.env.backendUrl}/login`, {
+    
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -38,7 +38,7 @@ const Login = () => {
       const result = await response.json();
 
       if (response.ok) {
-        // ✅ Store email & customerId in context
+        // console.log("Response from server:", result.email, result.customerId);
         setUser({
           email: result.email,
           customerId: result.customerId

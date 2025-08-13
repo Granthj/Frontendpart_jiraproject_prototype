@@ -25,7 +25,7 @@ const UserDashboard = () => {
     const fetchTasks = async () => {
         try {
         //   console.log("Fetching tasks for user:", user.email);
-        const response = await fetch(`${process.env.backendUrl}/tasks/:${user.email}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tasks/:${user.email}`, {
           method: "GET",
           credentials: "include", 
         });

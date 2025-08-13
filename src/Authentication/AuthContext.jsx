@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({
     email: null,
@@ -11,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
       const checkUser = async()=>{
         try{
-            const response = await fetch(`${process.env.backendUrl}/check-login`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/check-login`, {
                 method: "GET",
                 credentials: "include"
             });
@@ -35,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       // Optional: call backend logout to clear cookie
-      await fetch(`${process.env.backendUrl}/logout`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/logout`, {
         method: "POST",
         credentials: "include"
       });

@@ -14,26 +14,26 @@ const AdminAddEmployee = () => {
     })
 
     useEffect(() => {
-        fetch(`${process.env.backendUrl}/existing-emails`)
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/existing-emails`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data, "abcd")
+                // console.log(data, "abcd")
                 setEmployees(data.emails);
             })
             .catch((err) => console.error("Error fetching employees:", err));
     }, [emailAdded]);
     useEffect(() => {
-        fetch(`${process.env.backendUrl}/available-user`)
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/available-user`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.usersNotInEmployees, "efgh")
+                // console.log(data.usersNotInEmployees, "efgh")
                 setUsers(data.usersNotInEmployees);
             })
             .catch((err) => console.error("Error fetching employees:", err));
     }, []);
     useEffect(() => {
         const addEmployee=()=>{
-            fetch(`${process.env.backendUrl}/admin/create-employee`, {
+            fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/create-employee`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -56,7 +56,7 @@ const AdminAddEmployee = () => {
         e.preventDefault();
         console.log(formData);
         // console.log(...formData, "selected employee");
-        fetch(`${process.env.backendUrl}/admin-giveTask`, {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/admin-giveTask`, {
             method: "POST", 
             headers: {
                 "Content-Type": "application/json"
