@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
       const checkUser = async()=>{
         try{
-            const response = await fetch("http://localhost:9000/check-login", {
+            const response = await fetch(`${process.env.backendUrl}/check-login`, {
                 method: "GET",
                 credentials: "include"
             });
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       // Optional: call backend logout to clear cookie
-      await fetch("http://localhost:9000/logout", {
+      await fetch(`${process.env.backendUrl}/logout`, {
         method: "POST",
         credentials: "include"
       });
@@ -53,5 +53,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook for easy access
 export const useAuth = () => useContext(AuthContext);
