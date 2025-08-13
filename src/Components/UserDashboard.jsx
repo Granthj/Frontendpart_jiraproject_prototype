@@ -37,6 +37,7 @@ const UserDashboard = () => {
         const data = await response.json();
         // console.log("DATA tasks:", data.tasks);
         setTasks(data.tasks);
+        setLoading(false);
       } catch (err) {
         setError(err.message);
       } finally {
