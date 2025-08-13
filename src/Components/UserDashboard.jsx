@@ -11,13 +11,15 @@ const UserDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [passingtask,setPassingTask] = useState();
   const { logout } = useAuth();
 //   console.log(logout,"tdttdtd")
  function logOut() {
     logout();       
     window.location.href = "/login"; // Redirect to login page after logout
     }
-  const openUpdateOption = () => {
+  const openUpdateOption = (task) => {
+    setPassingTask(task);
     setShowUpdateModal(true);
   }
   useEffect(() => {
@@ -76,11 +78,10 @@ const UserDashboard = () => {
                 <td>{new Date(task.assignDate).toLocaleDateString()}</td>
                 <td>{new Date(task.endDate).toLocaleDateString()}</td>
                 <td>
-                  <button className="btn btn-primary btn-sm" onClick={openUpdateOption}>
+                  <button className="btn btn-primary btn-sm" onClick={() => openUpdateOption(task)}>
                     See Progress
                   </button>
                 </td>
-                {showUpdateModal&&<EditTodaysTask userEmail={user.email} task={task.progress} taskid={task._id} show={showUpdateModal} handleClose={() => setShowUpdateModal(false)}/>}
               </tr>
             ))
           ) : (
@@ -92,6 +93,7 @@ const UserDashboard = () => {
           )}
         </tbody>
       </table>
+          {showUpdateModal&&<EditTodaysTask userEmail={user.email} task={passingtask.progress} taskid={passingtask._id} show={showUpdateModal} handleClose={() => setShowUpdateModal(false)}/>}
     </div>
     <div className="d-flex justify-content-center mt-4">
     <button type="button" 
