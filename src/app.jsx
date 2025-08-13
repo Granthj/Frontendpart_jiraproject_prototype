@@ -22,19 +22,19 @@ const App = () => {
                 <p>Technologies used node,express,mongoDb and reactjs with jwt token</p>
                 <p>All routes details</p>
                 <p>
-                    <Link to="/"></Link> for home page
+                    <Link to="/">Home</Link> for home page
                 </p>
                 <p>
-                    <Link to="/admin-dashboard"></Link> for admin dashboard (Not any authentication and login option yet)
+                    <Link to="/admin-dashboard">Admin-Dashboard</Link> for admin dashboard (Not any authentication and login option yet)
                 </p>
                 <p>
-                    <Link to="/user-dashboard/:email"></Link> for user dashboard (Protected Route please login before)
+                    <Link to="/user-dashboard/:email">User-Dashboard</Link> for user dashboard (Protected Route please login before)
                 </p>
                 <p>
-                    <Link to="/login"></Link> for login
+                    <Link to="/login">Login</Link> for login
                 </p>
                 <p>
-                    <Link to="/signup">/signup</Link> for signup
+                    <Link to="/signup">signup</Link> for signup
                 </p>
                 {user.email?(<button className="btn btn-success" onClick={handleLogout}>
                     Logout
